@@ -1,0 +1,95 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  --pink: #f85a93;
+  --orange: #ff984a;
+  --rose-dark: #7e3551;
+  --peach-bg: #fff6f1;
+  --pink-soft: #fff0f5;
+  --pink-orange-gradient: linear-gradient(90deg, #f85a93 0%, #ff984a 100%);
+  color: #1f2a37;
+  background: var(--peach-bg);
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  color: #d46073;
+  font-weight: 700;
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button,
+.page-button {
+  border: none;
+  border-radius: 14px;
+  padding: 11px 16px;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.primary-button {
+  background: linear-gradient(90deg, #f85a93 0%, #ff984a 100%);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(248, 90, 147, 0.22);
+}
+
+.secondary-button {
+  background: #ffe7dc;
+  color: #803c3c;
+}
+
+.ghost-button,
+.page-button {
+  background: #fff0f5;
+  color: #b34d73;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.ghost-button:hover,
+.page-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button:disabled,
+.ghost-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}

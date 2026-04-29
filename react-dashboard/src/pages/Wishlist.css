@@ -1,0 +1,121 @@
+.wishlist-page {
+  min-height: calc(100vh - 92px);
+  padding: 32px 60px;
+  background: var(--peach-bg);
+}
+
+.wishlist-card {
+  max-width: 980px;
+  padding: 22px;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(248, 90, 147, 0.08);
+}
+
+.wishlist-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(248, 90, 147, 0.14);
+}
+
+.wishlist-card__header h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 1.55rem;
+}
+
+.wishlist-card__header p {
+  margin: 4px 0 0;
+  color: #4b5563;
+}
+
+.wishlist-back-button,
+.wishlist-primary-button,
+.wishlist-secondary-button {
+  border: none;
+  border-radius: 5px;
+  padding: 9px 13px;
+  font-weight: 700;
+}
+
+.wishlist-back-button {
+  background: var(--pink-orange-gradient);
+  color: #ffffff;
+}
+
+.wishlist-list {
+  display: grid;
+}
+
+.wishlist-item {
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(248, 90, 147, 0.14);
+}
+
+.wishlist-item img {
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+  background: #f3f4f6;
+}
+
+.wishlist-item__details h3 {
+  margin: 0 0 6px;
+  color: #111827;
+  font-size: 1rem;
+}
+
+.wishlist-item__details p {
+  margin: 0 0 6px;
+  color: #4b5563;
+}
+
+.wishlist-item__details strong {
+  color: #111827;
+}
+
+.wishlist-item__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.wishlist-primary-button {
+  background: var(--pink-orange-gradient);
+  color: #ffffff;
+}
+
+.wishlist-secondary-button {
+  background: var(--pink-soft);
+  color: var(--rose-dark);
+}
+
+.empty-state {
+  margin-top: 20px;
+  padding: 32px;
+  text-align: center;
+  border-radius: 6px;
+  background: var(--pink-soft);
+  color: var(--rose-dark);
+}
+
+@media (max-width: 760px) {
+  .wishlist-page {
+    padding: 24px 16px;
+  }
+
+  .wishlist-card__header,
+  .wishlist-item,
+  .wishlist-item__actions {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+}

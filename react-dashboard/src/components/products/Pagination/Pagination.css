@@ -1,0 +1,12 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.page-button.active {
+  background: #1c6ba4;
+  color: #fff;
+}

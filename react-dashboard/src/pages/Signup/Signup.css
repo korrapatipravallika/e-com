@@ -1,0 +1,104 @@
+.signup-page {
+  min-height: calc(100vh - 111px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at left top, rgba(255, 111, 164, 0.88), transparent 28%),
+    radial-gradient(circle at right bottom, rgba(255, 165, 90, 0.88), transparent 26%),
+    linear-gradient(135deg, #fff0f5 0%, #fff3e4 100%);
+}
+
+.signup-panel {
+  width: min(460px, 100%);
+  padding: 36px 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(232, 116, 133, 0.18);
+  box-shadow: 0 24px 70px rgba(219, 107, 122, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.signup-panel h2 {
+  margin: 0 0 22px;
+  text-align: center;
+  color: #632d46;
+  font-size: 2.15rem;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.signup-form {
+  display: grid;
+  gap: 14px;
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="password"] {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(232, 116, 133, 0.22);
+  background: rgba(255, 248, 246, 0.96);
+  color: #452231;
+  outline: none;
+}
+
+.signup-form input::placeholder {
+  color: #b8848c;
+}
+
+.signup-form input:focus {
+  border-color: rgba(248, 90, 147, 0.75);
+  box-shadow: 0 0 0 3px rgba(248, 90, 147, 0.16);
+}
+
+.signup-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+  color: #70384d;
+  font-size: 1rem;
+}
+
+.signup-checkbox input {
+  width: 16px;
+  height: 16px;
+  accent-color: #ef5b7b;
+}
+
+.signup-button {
+  margin-top: 4px;
+  border: none;
+  border-radius: 14px;
+  padding: 13px 16px;
+  background: linear-gradient(90deg, #f85a93 0%, #ff984a 100%);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.signup-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-error {
+  margin: 0;
+  color: #c43b5c;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.signup-footer {
+  margin: 0;
+  color: #96556f;
+  font-size: 0.98rem;
+}
+
+.signup-footer a {
+  color: #ef5b7b;
+  text-decoration: underline;
+}

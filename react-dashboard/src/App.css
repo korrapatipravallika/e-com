@@ -1,0 +1,8 @@
+.app-shell {
+  min-height: 100vh;
+}
+
+.page-shell {
+  width: 100%;
+  padding: 0;
+}
