@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCartItems, selectCartTotals } from "../../features/cart/selectors";
 import { formatCurrency } from "../../utils/formatters";
 import "../Address/Address.css";
+import "./Payment.css";
+import CashOnDeliveryOption from "./CashOnDeliveryOption";
+import UpiOption from "./UpiOption";
+import CardOption from "./CardOption";
+import EmiOption from "./EmiOption";
 
 const checkoutSteps = [
   { number: 1, label: "My Cart", status: "done", path: "/cart" },
@@ -15,7 +21,47 @@ function Payment() {
   const navigate = useNavigate();
   const cartItems = useSelector(selectCartItems);
   const totals = useSelector(selectCartTotals);
+  const [selectedMethod, setSelectedMethod] = useState("cod");
+  const [upiId, setUpiId] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [cardExpiry, setCardExpiry] = useState("");
+  const [cardCvv, setCardCvv] = useState("");
   const itemCount = cartItems.reduce((count, item) => count + item.quantity, 0);
+  const isCardNumberValid = /^\d{16}$/.test(cardNumber.replace(/\s+/g, ""));
+
+  const paymentModes = [
+    { key: "cod", label: "Cash On Delivery" },
+    { key: "upi", label: "UPI (Pay Via Any App)" },
+    { key: "card", label: "Credit / Debit Cards" },
+    { key: "emi", label: "EMI" },
+  ];
+
+  const actionLabel = selectedMethod === "cod" ? "Continue" : "Pay Now";
+  const isPaymentActionDisabled =
+    cartItems.length === 0 || (selectedMethod === "card" && !isCardNumberValid);
+
+  const handleConfirm = () => {
+    navigate("/order-confirm");
+  };
+
+  const methodPanels = {
+    cod: <CashOnDeliveryOption />,
+    upi: <UpiOption upiId={upiId} setUpiId={setUpiId} />,
+    card: (
+      <CardOption
+        cardNumber={cardNumber}
+        setCardNumber={setCardNumber}
+        cardName={cardName}
+        setCardName={setCardName}
+        cardExpiry={cardExpiry}
+        setCardExpiry={setCardExpiry}
+        cardCvv={cardCvv}
+        setCardCvv={setCardCvv}
+      />
+    ),
+    emi: <EmiOption />,
+  };
 
   return (
     <section className="address-page">
@@ -46,23 +92,41 @@ function Payment() {
           ))}
         </div>
 
-        <div className="address-layout">
-          <section className="address-card">
-            <div className="address-card__header">
-              <div>
-                <p className="address-card__eyebrow">Payment method</p>
-                <h3>Cash on Delivery</h3>
+        <div className="address-layout payment-layout">
+          <section className="address-card payment-card">
+            <h3 className="payment-title">Choose Payment Mode</h3>
+            <div className="payment-body">
+              <div className="payment-mode-list">
+                {paymentModes.map((mode) => (
+                  <button
+                    key={mode.key}
+                    className={`payment-mode-button ${
+                      selectedMethod === mode.key ? "payment-mode-button--active" : ""
+                    }`}
+                    type="button"
+                    onClick={() => setSelectedMethod(mode.key)}
+                  >
+                    {mode.label}
+                  </button>
+                ))}
               </div>
+              {methodPanels[selectedMethod]}
             </div>
-            <p className="address-subtitle">
-              Payment will be collected when the order is delivered.
-            </p>
+
+            <button
+              className="address-button payment-cta"
+              disabled={isPaymentActionDisabled}
+              onClick={handleConfirm}
+              type="button"
+            >
+              {actionLabel}
+            </button>
           </section>
 
           <aside className="address-summary">
             <section className="address-card address-summary-card">
-              <p className="address-card__eyebrow">Order total</p>
-              <h3>{formatCurrency(totals.grandTotal)}</h3>
+              <p className="address-card__eyebrow">Estimates Delivery Time</p>
+              <h3>27 Dec 2025</h3>
 
               <div className="address-summary__rows">
                 <div className="address-summary__row">
@@ -70,7 +134,11 @@ function Payment() {
                   <strong>{formatCurrency(totals.subtotal)}</strong>
                 </div>
                 <div className="address-summary__row">
-                  <span>Delivery Fee</span>
+                  <span>Discount</span>
+                  <strong className="payment-discount">-{formatCurrency(totals.discount)}</strong>
+                </div>
+                <div className="address-summary__row">
+                  <span>Platform Fee</span>
                   <strong>{formatCurrency(totals.delivery)}</strong>
                 </div>
                 <div className="address-summary__row address-summary__row--total">
@@ -78,15 +146,6 @@ function Payment() {
                   <strong>{formatCurrency(totals.grandTotal)}</strong>
                 </div>
               </div>
-
-              <button
-                className="address-button address-button--primary address-summary__cta"
-                disabled={cartItems.length === 0}
-                onClick={() => navigate("/order-confirm")}
-                type="button"
-              >
-                Confirm Order
-              </button>
             </section>
           </aside>
         </div>
