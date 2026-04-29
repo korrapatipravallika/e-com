@@ -1,0 +1,131 @@
+.payment-layout {
+  grid-template-columns: minmax(0, 1.8fr) minmax(300px, 0.8fr);
+}
+
+.payment-card {
+  display: grid;
+  gap: 18px;
+}
+
+.payment-title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.payment-body {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.payment-mode-list {
+  display: grid;
+  gap: 10px;
+}
+
+.payment-mode-button {
+  border: 1px solid rgba(31, 42, 55, 0.18);
+  background: #fff;
+  color: #171717;
+  border-radius: 12px;
+  min-height: 48px;
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 700;
+}
+
+.payment-mode-button--active {
+  background: linear-gradient(90deg, #572384 0%, #23072d 100%);
+  color: #fff;
+  border-color: transparent;
+}
+
+.payment-method-content {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.payment-method-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.payment-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.payment-radio input {
+  accent-color: #5e2d8c;
+}
+
+.payment-method-hint {
+  margin: 0;
+  color: #908fa2;
+  font-size: 0.95rem;
+}
+
+.payment-method-hint--dark {
+  color: #4b5563;
+}
+
+.payment-divider {
+  margin: 2px 0;
+  text-align: center;
+  color: #6b7280;
+}
+
+.payment-field {
+  display: grid;
+  gap: 8px;
+}
+
+.payment-field span {
+  font-weight: 600;
+}
+
+.payment-field input,
+.payment-field select,
+.payment-grid input {
+  border: 1px solid rgba(31, 42, 55, 0.18);
+  border-radius: 8px;
+  min-height: 40px;
+  padding: 0 12px;
+}
+
+.payment-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.payment-grid input:first-child,
+.payment-grid input:nth-child(2) {
+  grid-column: 1 / -1;
+}
+
+.payment-cta {
+  width: min(100%, 340px);
+  color: #fff;
+  background: linear-gradient(90deg, #6a2ea2 0%, #1f0b30 100%);
+}
+
+.payment-discount {
+  color: #14803c;
+}
+
+@media (max-width: 1080px) {
+  .payment-layout,
+  .payment-body,
+  .payment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-cta {
+    width: 100%;
+  }
+}
